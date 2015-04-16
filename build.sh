@@ -36,7 +36,7 @@ else
     CONFIGURE_MPI="--without-mpi"
 fi
 
-if [ "$xPYTHON" = "Python+" ] ; then
+if [ "$xPYTHON" = "PYTHON+" ] ; then
     CONFIGURE_PYTHON="--with-python"
 else
     CONFIGURE_PYTHON="--without-python"
