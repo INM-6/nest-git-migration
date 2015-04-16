@@ -21,8 +21,8 @@ branches:
  only:
   - master
 cache:
-apt: true 
-ccache: true
+  apt: true 
+  ccache: true
 virtualenv:
   system_site_packages: true
 addons:
