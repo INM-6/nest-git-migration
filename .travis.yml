@@ -105,7 +105,7 @@ before_install:
  # for checking coding style
   - sudo apt-get install clang-format-3.4
   - sudo ln -s /usr/bin/clang-format-3.4 /usr/bin/clang-format
-  - clang-format -style=llvm -dump-config > .clang-format
+  #- clang-format -style=llvm -dump-config > .clang-format
 #cpplint
  # - sudo curl -L "http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py" -o /usr/bin/cpplint.py
  # - sudo chmod a+x /usr/bin/cpplint.py
