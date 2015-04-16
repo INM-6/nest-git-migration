@@ -69,8 +69,41 @@ cd "$NEST_VPATH"
 make
 make install
 make installcheck
-ls /home/travis/build/INM-6/nest-git-migration/build/reports
-cat /home/travis/build/INM-6/nest-git-migration/build/reports/TEST-core.phase_2.xml
-if [ "$xMPI" = "MPI+" ] ; then
-  cat /home/travis/build/INM-6/nest-git-migration/build/reports/TEST-core.phase_5.xml
-fi  
+
+# for static code analysis
+# Extracting changed files between two commits
+arr_sha=$(echo $TRAVIS_COMMIT_RANGE | tr "..." " ")
+
+echo "${arr_sha[0]}"
+echo "${arr_sha[1]}"
+
+file_names=`git diff --name-only "${arr_sha[0]}" "${arr_sha[1]}"`
+
+for f in $file_names; do
+  if [[ $f != *.h || $f != *.hpp || $f != *.cc || $f != *.cpp || $f != *.c ]]; then
+    continue
+  fi
+  echo "Checking file $f:"
+  # filter .cpp .c .h .hpp
+ 
+# clang format creates formatted file
+  clang-format $f > tmp_out_"${arr_sha[1]}".txt
+# clang compares the committed file and formatted file and writes the differences to another file
+  diff $f tmp_out_"${arr_sha[1]}".txt > format_diff_"${arr_sha[1]}".diff
+  if [ $? -ne 0 ]; then
+    echo "There are differences in the formatting:"
+    cat format_diff_"${arr_sha[1]}".diff
+  fi
+  rm format_diff_"${arr_sha[1]}".diff tmp_out_"${arr_sha[1]}".txt
+
+# Vera++ checks the specified list of rules given in the profile nest which is placed in the <vera++ home>/lib/vera++/profile
+  vera++ --profile nest $f
+  cppcheck --enable=all --inconclusive --std=c++03 $f
+done
+
+
+#ls /home/travis/build/INM-6/nest-git-migration/build/reports
+#cat /home/travis/build/INM-6/nest-git-migration/build/reports/TEST-core.phase_2.xml
+#if [ "$xMPI" = "MPI+" ] ; then
+#  cat /home/travis/build/INM-6/nest-git-migration/build/reports/TEST-core.phase_5.xml
+#fi  
