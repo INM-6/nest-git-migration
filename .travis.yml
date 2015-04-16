@@ -110,6 +110,8 @@ before_install:
   - sudo chmod a+x /usr/bin/cpplint.py
 #cppcheck
   - sudo apt-get install cppcheck
+#vera++
+  - sudo apt-get install vera++
   
 install: 
  - cppcheck --version
