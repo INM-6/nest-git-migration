@@ -15,7 +15,7 @@ EOF
 file_names=`git diff --name-only $TRAVIS_COMMIT_RANGE`
 
 for f in $file_names; do
-  if [[ "$f" != "*.h" || "$f" != "*.hpp" || "$f" != "*.cc" || "$f" != "*.cpp" || "$f" != "*.c" ]]; then
+  if [ $f != *.h ] || [ $f != *.hpp ] || [ $f != *.cc ] || [ $f != *.cpp ] || [ $f != *.c ]; then
     continue
   fi
   echo "Checking file $f:"
