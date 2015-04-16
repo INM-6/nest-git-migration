@@ -2,13 +2,7 @@ language: cpp
 compiler:
   - gcc
   - clang
-#env: 
- #- xGSL=GSL+
- #- xGSL=GSL-  
- #- xMPI=MPI+
- # - xMPI=MPI-
- # - xPython=PYTHON+
- # - xPython=PYTHON-
+
 #env:
 #  - ANALYZE=false
 #  - ANALYZE=true
@@ -27,9 +21,13 @@ branches:
  only:
   - master
 cache:
-apt: true  
+apt: true 
+ccache: true
 virtualenv:
   system_site_packages: true
+addons:
+  artifacts:
+   debug: true
 before_install:
   - echo $LANG
   - echo $LC_ALL
