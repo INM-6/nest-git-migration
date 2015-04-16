@@ -38,8 +38,6 @@ done
 
 if [ "$xMPI" = "MPI+" ] ; then
 
-    # Fedora
-   # module load mpi/openmpi-i386
    #openmpi
    export LD_LIBRARY_PATH="/usr/lib/openmpi/lib:$LD_LIBRARY_PATH"
    export CPATH="/usr/lib/openmpi/include:$CPATH"
@@ -97,9 +95,3 @@ make
 make install
 make installcheck
 
-
-#ls /home/travis/build/INM-6/nest-git-migration/build/reports
-#cat /home/travis/build/INM-6/nest-git-migration/build/reports/TEST-core.phase_2.xml
-#if [ "$xMPI" = "MPI+" ] ; then
-#  cat /home/travis/build/INM-6/nest-git-migration/build/reports/TEST-core.phase_5.xml
-#fi  
