@@ -61,7 +61,7 @@ for f in $file_names; do
         echo $DIFF
       fi
       # remove temporary files
-      rm ${f}_formatted_$TRAVIS_COMMIT.txt ${f}_$TRAVIS_COMMIT.diff
+      rm ${f}_formatted_$TRAVIS_COMMIT.txt
 
       # Vera++ checks the specified list of rules given in the profile 
       # nest which is placed in the <vera++ home>/lib/vera++/profile
