@@ -13,7 +13,7 @@ AlwaysBreakAfterDefinitionReturnType: true
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: true
 
-BinPackArguments: false
+# BinPackArguments: false
 BinPackParameters: false
 # BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeBraces: Allman
