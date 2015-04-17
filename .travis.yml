@@ -39,6 +39,7 @@ before_install:
   - sudo rm -rf /var/lib/apt/lists/*
   - ls /etc/apt/sources.list.d/
   - sudo rm /etc/apt/sources.list.d/docker-source.list
+  - sudo sh -c 'echo -n "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list'
   - sudo apt-get update
 
   - sudo apt-get update -qq
@@ -78,16 +79,11 @@ before_install:
   - sudo apt-get install -y cvs e2fsprogs gettext libpackagekit-glib2-dev groff libssh2-1-dev python-libssh2 slang-gsl libncurses5-dev check
 
   # for checking coding style
-  #- deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main
-  #- deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main
-  - sudo apt-get install clang-format-3.5
+  - sudo apt-get install clang-format-3.6
 
-#cpplint
- # - sudo curl -L "http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py" -o /usr/bin/cpplint.py
- # - sudo chmod a+x /usr/bin/cpplint.py
-#cppcheck
+  #cppcheck
   - sudo apt-get install cppcheck
-#vera++
+  #vera++
   - sudo apt-get install vera++
 
 install: 
