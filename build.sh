@@ -72,7 +72,10 @@ make installcheck
 
 # initialize vera++
 # when $HOME is present, vera++ looks for ~/.vera++ as root dir
-mkdir ~/.vera++
+mkdir -p ~/.vera++/profiles
+mkdir -p ~/.vera++/rules
+mkdir -p ~/.vera++/transformations
+
 # on ubuntu vera++ is installed to /usr/
 # copy all scripts/rules/ ... into ~/.vera++
 cp -r /usr/lib/vera++/* ~/.vera++
