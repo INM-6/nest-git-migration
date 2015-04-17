@@ -56,7 +56,7 @@ for f in $file_names; do
       # compare the committed file and formatted file and 
       # writes the differences to another file
       DIFF=$(diff $f ${f}_formatted_$TRAVIS_COMMIT.txt)
-      if [ $DIFF ]; then
+      if [ "$DIFF" ]; then
         echo "There are differences in the formatting:"
         echo $DIFF
       fi
