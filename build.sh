@@ -69,7 +69,7 @@ make install
 make installcheck
 
 # static code analysis
-
+cd .. # go back to source dir
 # initialize vera++
 mkdir -p vera_home
 
