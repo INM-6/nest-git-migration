@@ -71,15 +71,12 @@ make installcheck
 # static code analysis
 
 # initialize vera++
-# when $HOME is present, vera++ looks for ~/.vera++ as root dir
-mkdir -p ~/.vera++/profiles
-mkdir -p ~/.vera++/rules
-mkdir -p ~/.vera++/transformations
+mkdir -p vera_home
 
 # on ubuntu vera++ is installed to /usr/
 # copy all scripts/rules/ ... into ~/.vera++
-cp -r /usr/lib/vera++/* ~/.vera++
-cat > .vera++/profiles/nest <<EOF
+cp -r /usr/lib/vera++/* ./vera_home
+cat > ./vera_home/profiles/nest <<EOF
 #!/usr/bin/tclsh
 # This profile includes all the rules for checking NEST
 
@@ -129,7 +126,7 @@ for f in $file_names; do
 
       # Vera++ checks the specified list of rules given in the profile 
       # nest which is placed in the <vera++ home>/lib/vera++/profile
-      vera++ --profile nest $f
+      vera++ --root ./vera_home --profile nest $f
       cppcheck --enable=all --inconclusive --std=c++03 $f
       ;;
     *)
