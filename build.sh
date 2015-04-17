@@ -52,7 +52,7 @@ for f in $file_names; do
     *.h | *.c | *.cc | *.hpp | *.cpp )
       echo "Checking file $f:"
       # clang format creates tempory formatted file
-      clang-format-3.6 $f > ${f}_formatted_$TRAVIS_COMMIT.txt
+      clang-format-3.5 $f > ${f}_formatted_$TRAVIS_COMMIT.txt
       # compare the committed file and formatted file and 
       # writes the differences to another file
       diff $f ${f}_formatted_$TRAVIS_COMMIT.txt > ${f}_$TRAVIS_COMMIT.diff

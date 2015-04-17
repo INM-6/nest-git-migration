@@ -5,17 +5,17 @@ AlignEscapedNewlinesLeft: true
 AlignTrailingComments: true
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: false # not in 3.4
-AllowShortCaseLabelsOnASingleLine: false # not in 3.4
+# AllowShortCaseLabelsOnASingleLine: false # not in 3.4, 3.5
 AllowShortFunctionsOnASingleLine: None # not in 3.4
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
-AlwaysBreakAfterDefinitionReturnType: true # not in 3.4
+# AlwaysBreakAfterDefinitionReturnType: true # not in 3.4, 3.5
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: true
 
-BinPackArguments: false # not in 3.4
+# BinPackArguments: false # not in 3.4, 3.5
 BinPackParameters: false
-BreakBeforeBinaryOperators: NonAssignment # not in 3.4
+BreakBeforeBinaryOperators: true # NonAssignment # not in 3.4
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializersBeforeComma: true
@@ -42,9 +42,9 @@ MaxEmptyLinesToKeep: 2
 NamespaceIndentation: None
 
 PointerAlignment: Left # not in 3.4
-PointerBindsToType: true # 3.4
+# PointerBindsToType: true # 3.4
 
-SpaceAfterCStyleCast: true # not in 3.4
+# SpaceAfterCStyleCast: true # not in 3.4, 3.5
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements # not in 3.4
 SpaceInEmptyParentheses: false
@@ -52,7 +52,7 @@ SpacesBeforeTrailingComments: 1
 SpacesInAngles: true
 SpacesInCStyleCastParentheses: true
 SpacesInParentheses: true
-SpacesInSquareBrackets: true # not in 3.4
+# SpacesInSquareBrackets: true # not in 3.4, 3.5
 Standard: Cpp03
 
 UseTab: Never
