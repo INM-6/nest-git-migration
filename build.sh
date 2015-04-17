@@ -51,10 +51,15 @@ for f in $file_names; do
   case $f in
     *.h | *.c | *.cc | *.hpp | *.cpp )
       echo "Checking file $f:"
+      # Vera++ checks the specified list of rules given in the profile 
+      # nest which is placed in the <vera++ home>/lib/vera++/profile
+      vera++ --root ./vera_home --profile nest $f
+      cppcheck --enable=all --inconclusive --std=c++03 $f
+      
       # clang format creates tempory formatted file
       clang-format-3.6 $f > ${f}_formatted_$TRAVIS_COMMIT.txt
       # compare the committed file and formatted file and 
-      # writes the differences to another file
+      # writes the differences to DIFF
       DIFF=$(diff $f ${f}_formatted_$TRAVIS_COMMIT.txt)
       if [ "$DIFF" != "" ]; then
         echo "There are differences in the formatting:"
@@ -62,11 +67,6 @@ for f in $file_names; do
       fi
       # remove temporary files
       rm ${f}_formatted_$TRAVIS_COMMIT.txt
-
-      # Vera++ checks the specified list of rules given in the profile 
-      # nest which is placed in the <vera++ home>/lib/vera++/profile
-      vera++ --root ./vera_home --profile nest $f
-      cppcheck --enable=all --inconclusive --std=c++03 $f
       ;;
     *)
       echo "$f : not a C/CPP file. Do not do static analysis / formatting checking."
