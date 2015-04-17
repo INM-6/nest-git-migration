@@ -9,33 +9,6 @@ cat > $HOME/.matplotlib/matplotlibrc <<EOF
     backend : svg
 EOF
 
-# for static code analysis
-# Extracting changed files between two commits
-
-file_names=`git diff --name-only $TRAVIS_COMMIT_RANGE`
-
-for f in $file_names; do
-  if [ $f != *.h ] || [ $f != *.hpp ] || [ $f != *.cc ] || [ $f != *.cpp ] || [ $f != *.c ]; then
-    continue
-  fi
-  echo "Checking file $f:"
-  # filter .cpp .c .h .hpp
- 
-# clang format creates formatted file
-  clang-format $f > tmp_out_"${arr_sha[1]}".txt
-# clang compares the committed file and formatted file and writes the differences to another file
-  diff $f tmp_out_"${arr_sha[1]}".txt > format_diff_"${arr_sha[1]}".diff
-  if [ $? -ne 0 ]; then
-    echo "There are differences in the formatting:"
-    cat format_diff_"${arr_sha[1]}".diff
-  fi
-  rm format_diff_"${arr_sha[1]}".diff tmp_out_"${arr_sha[1]}".txt
-
-# Vera++ checks the specified list of rules given in the profile nest which is placed in the <vera++ home>/lib/vera++/profile
-  vera++ --profile nest $f
-  cppcheck --enable=all --inconclusive --std=c++03 $f
-done
-
 if [ "$xMPI" = "MPI+" ] ; then
 
    #openmpi
@@ -95,3 +68,69 @@ make
 make install
 make installcheck
 
+# static code analysis
+
+# initialize vera++
+# when $HOME is present, vera++ looks for ~/.vera++ as root dir
+mkdir ~/.vera++
+# on ubuntu vera++ is installed to /usr/
+# copy all scripts/rules/ ... into ~/.vera++
+cp -r /usr/lib/vera++/* ~/.vera++
+cat > .vera++/profiles/nest <<EOF
+#!/usr/bin/tclsh
+# This profile includes all the rules for checking NEST
+
+set rules {
+  F001
+  F002
+  L001
+  L002
+  L003
+  L005
+  L006
+  T001
+  T002
+  T004
+  T005
+  T006
+  T007
+  T010
+  T011
+  T012
+  T013
+  T017
+  T018
+  T019
+}
+EOF
+
+# Extracting changed files between two commits
+file_names=`git diff --name-only $TRAVIS_COMMIT_RANGE`
+
+for f in $file_names; do
+   # filter files
+  case $f in
+    *.h | *.c | *.cc | *.hpp | *.cpp )
+      echo "Checking file $f:"
+      # clang format creates tempory formatted file
+      clang-format $f > tmp_out_"${arr_sha[1]}".txt
+      # compare the committed file and formatted file and 
+      # writes the differences to another file
+      diff $f tmp_out_"${arr_sha[1]}".txt > format_diff_"${arr_sha[1]}".diff
+      if [ $? -ne 0 ]; then
+        echo "There are differences in the formatting:"
+        cat format_diff_"${arr_sha[1]}".diff
+      fi
+      # remove temporary files
+      rm format_diff_"${arr_sha[1]}".diff tmp_out_"${arr_sha[1]}".txt
+
+      # Vera++ checks the specified list of rules given in the profile 
+      # nest which is placed in the <vera++ home>/lib/vera++/profile
+      vera++ --profile nest $f
+      cppcheck --enable=all --inconclusive --std=c++03 $f
+      ;;
+    *)
+      echo "$f : not a C/CPP file. Do not do static analysis / formatting checking."
+      continue
+  esac
+done
