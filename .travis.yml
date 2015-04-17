@@ -44,7 +44,7 @@ before_install:
   # add key from ^ repository
   - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
 
-  - sudo apt-get update
+  # update repository status (-qq is more quiet)
   - sudo apt-get update -qq
 
   - sudo apt-get install -y python3 ipython3 coreutils gawk mawk original-awk
