@@ -113,16 +113,16 @@ for f in $file_names; do
     *.h | *.c | *.cc | *.hpp | *.cpp )
       echo "Checking file $f:"
       # clang format creates tempory formatted file
-      clang-format $f > tmp_out_"${arr_sha[1]}".txt
+      clang-format $f > ${f}_formatted_$TRAVIS_COMMIT.txt
       # compare the committed file and formatted file and 
       # writes the differences to another file
-      diff $f tmp_out_"${arr_sha[1]}".txt > format_diff_"${arr_sha[1]}".diff
+      diff $f ${f}_formatted_$TRAVIS_COMMIT.txt > ${f}_$TRAVIS_COMMIT.diff
       if [ $? -ne 0 ]; then
         echo "There are differences in the formatting:"
-        cat format_diff_"${arr_sha[1]}".diff
+        cat ${f}_$TRAVIS_COMMIT.diff
       fi
       # remove temporary files
-      rm format_diff_"${arr_sha[1]}".diff tmp_out_"${arr_sha[1]}".txt
+      rm ${f}_formatted_$TRAVIS_COMMIT.txt ${f}_$TRAVIS_COMMIT.diff
 
       # Vera++ checks the specified list of rules given in the profile 
       # nest which is placed in the <vera++ home>/lib/vera++/profile
