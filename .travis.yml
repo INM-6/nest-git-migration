@@ -29,9 +29,9 @@ cache:
   ccache: true
 #virtualenv:
  # system_site_packages: true
-addons:
-  artifacts:
-   debug: true
+#addons:
+#  artifacts:
+ #  debug: true
 before_install:
   - echo $LANG
   - echo $LC_ALL
