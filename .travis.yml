@@ -17,7 +17,7 @@ env:
     - xGSL=0 xMPI=1 xPYTHON=0
     - xGSL=1 xMPI=1 xPYTHON=0
     - xGSL=1 xMPI=0 xPYTHON=0
-    - xGSL=0 xMPI=0- xPYTHON=1
+    - xGSL=0 xMPI=0 xPYTHON=1
     - xGSL=0 xMPI=0 xPYTHON=0
 matrix:
   fast_finish: true
