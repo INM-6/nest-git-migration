@@ -76,7 +76,7 @@ done
 
 exit 0
 
-if [ "$xMPI" = "MPI+" ] ; then
+if [ "$xMPI" = "1" ] ; then
 
    #openmpi
    export LD_LIBRARY_PATH="/usr/lib/openmpi/lib:$LD_LIBRARY_PATH"
@@ -101,13 +101,13 @@ else
     CONFIGURE_MPI="--without-mpi"
 fi
 
-if [ "$xPYTHON" = "PYTHON+" ] ; then
+if [ "$xPYTHON" = "1" ] ; then
     CONFIGURE_PYTHON="--with-python"
 else
     CONFIGURE_PYTHON="--without-python"
 fi
 
-if [ "$xGSL" = "GSL+" ] ; then
+if [ "$xGSL" = "1" ] ; then
     CONFIGURE_GSL="--with-gsl"
 else
     CONFIGURE_GSL="--without-gsl"
