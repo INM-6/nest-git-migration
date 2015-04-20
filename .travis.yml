@@ -9,17 +9,18 @@ dist: trusty
 #env:
 #  - ANALYZE=false
 #  - ANALYZE=true
+env:
+ matrix:
+    - xGSL=1 xMPI=0 xPYTHON=1
+    - xGSL=0 xMPI=1 xPYTHON=1
+    - xGSL=1 xMPI=1 xPYTHON=1
+    - xGSL=0 xMPI=1 xPYTHON=0
+    - xGSL=1 xMPI=1 xPYTHON=0
+    - xGSL=1 xMPI=0 xPYTHON=0
+    - xGSL=0 xMPI=0- xPYTHON=1
+    - xGSL=0 xMPI=0 xPYTHON=0
 matrix:
- include:
-    - env: xGSL=GSL+ xMPI=MPI- xPYTHON=PYTHON+
-    - env: xGSL=GSL- xMPI=MPI+ xPYTHON=PYTHON+
-    - env: xGSL=GSL+ xMPI=MPI+ xPYTHON=PYTHON+
-    - env: xGSL=GSL- xMPI=MPI+ xPYTHON=PYTHON-
-    - env: xGSL=GSL+ xMPI=MPI+ xPYTHON=PYTHON-
-    - env: xGSL=GSL+ xMPI=MPI- xPYTHON=PYTHON-
-    - env: xGSL=GSL- xMPI=MPI- xPYTHON=PYTHON+
-    - env: xGSL=GSL- xMPI=MPI- xPYTHON=PYTHON-
- fast_finish: true 
+  fast_finish: true
 branches:
  only:
   - master
