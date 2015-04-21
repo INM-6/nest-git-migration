@@ -60,7 +60,7 @@ for f in $file_names; do
       clang-format-3.6 $f > ${f}_formatted_$TRAVIS_COMMIT.txt
       # compare the committed file and formatted file and 
       # writes the differences to DIFF
-      difference="$(diff $f ${f}_formatted_$TRAVIS_COMMIT.txt)"
+      difference=`diff $f ${f}_formatted_$TRAVIS_COMMIT.txt`
       echo "clang-format differences in the formatting of $f:"
       echo "###################################################################"
       echo "$difference"
