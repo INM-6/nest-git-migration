@@ -61,7 +61,9 @@ for f in $file_names; do
       # compare the committed file and formatted file and 
       # writes the differences to DIFF
       DIFF=$(diff $f ${f}_formatted_$TRAVIS_COMMIT.txt)
-      if [ "$DIFF" != "" ]; then
+      if [ "$DIFF" = "" ]; then
+        echo "Clang formatting Ok for $f ."
+      else
         echo "There are differences in the formatting:"
         echo $DIFF
       fi
