@@ -51,22 +51,29 @@ for f in $file_names; do
   case $f in
     *.h | *.c | *.cc | *.hpp | *.cpp )
       echo "Checking file $f:"
+      f_base=`basename $f`
       # Vera++ checks the specified list of rules given in the profile 
       # nest which is placed in the <vera++ home>/lib/vera++/profile
-      vera++ --root ./vera_home --profile nest $f
-      cppcheck --enable=all --inconclusive --std=c++03 $f
+      vera++ --root ./vera_home --profile nest $f > ${f_base}_vera.txt
+      cppcheck --enable=all --inconclusive --std=c++03 $f > ${f_base}_cppcheck.txt
       
       # clang format creates tempory formatted file
       clang-format-3.6 $f > ${f}_formatted_$TRAVIS_COMMIT.txt
       # compare the committed file and formatted file and 
       # writes the differences to DIFF
-      difference=`diff $f ${f}_formatted_$TRAVIS_COMMIT.txt`
-      echo "clang-format differences in the formatting of $f:"
-      echo "###################################################################"
-      echo "$difference"
-      echo "###################################################################"
+      diff $f ${f}_formatted_$TRAVIS_COMMIT.txt > ${f_base}_clang_format.txt
       # remove temporary files
       rm ${f}_formatted_$TRAVIS_COMMIT.txt
+
+      echo "\nvera++ for $f:"
+      cat ${f_base}_vera.txt
+      echo "\ncppcheck for $f:"
+      cat ${f_base}_cppcheck.txt
+      echo "\nclang-format for $f:"
+      cat ${f_base}_clang_format.txt
+      rm ${f_base}_vera.txt
+      rm ${f_base}_cppcheck.txt
+      rm ${f_base}_clang_format.txt
       ;;
     *)
       echo "$f : not a C/CPP file. Do not do static analysis / formatting checking."
