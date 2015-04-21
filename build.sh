@@ -66,8 +66,8 @@ for f in $file_names; do
       clang-format-3.6 $f > ${f_base}_formatted_$TRAVIS_COMMIT.txt
       # compare the committed file and formatted file and 
       # writes the differences to a temp file
-      #diff $f ${f_base}_formatted_$TRAVIS_COMMIT.txt > ${f_base}_clang_format.txt
-      echo "bla" > ${f_base}_clang_format.txt
+      diff $f ${f_base}_formatted_$TRAVIS_COMMIT.txt | tee ${f_base}_clang_format.txt
+      #echo "bla" > ${f_base}_clang_format.txt
       echo "\nclang-format for $f:"
       cat ${f_base}_clang_format.txt
       
