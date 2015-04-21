@@ -64,7 +64,7 @@ Network::Network(SLIInterpreter &i)
   dict_miss_is_error_(true),
   model_defaults_modified_(false)
 {
-  Node::net_ = this;
+  Node::net_ = this; 
   Communicator::net_ = this;
 
   modeldict_ = new Dictionary();

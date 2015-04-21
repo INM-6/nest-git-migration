@@ -9,82 +9,6 @@ cat > $HOME/.matplotlib/matplotlibrc <<EOF
     backend : svg
 EOF
 
-# initialize vera++
-mkdir -p vera_home
-
-# on ubuntu vera++ is installed to /usr/
-# copy all scripts/rules/ ... into ~/.vera++
-cp -r /usr/lib/vera++/* ./vera_home
-cat > ./vera_home/profiles/nest <<EOF
-#!/usr/bin/tclsh
-# This profile includes all the rules for checking NEST
-
-set rules {
-  F001
-  F002
-  L001
-  L002
-  L003
-  L005
-  L006
-  T001
-  T002
-  T004
-  T005
-  T006
-  T007
-  T010
-  T011
-  T012
-  T013
-  T017
-  T018
-  T019
-}
-EOF
-
-# Extracting changed files between two commits
-file_names=`git diff --name-only $TRAVIS_COMMIT_RANGE`
-
-for f in $file_names; do
-   # filter files
-  case $f in
-    *.h | *.c | *.cc | *.hpp | *.cpp )
-      echo "Checking file $f:"
-      f_base=`basename $f`
-      # Vera++ checks the specified list of rules given in the profile 
-      # nest which is placed in the <vera++ home>/lib/vera++/profile
-      vera++ --root ./vera_home --profile nest $f > ${f_base}_vera.txt
-      echo "\nvera++ for $f:"
-      cat ${f_base}_vera.txt
-
-      cppcheck --enable=all --inconclusive --std=c++03 $f > ${f_base}_cppcheck.txt
-      echo "\ncppcheck for $f:"
-      cat ${f_base}_cppcheck.txt
-
-      # clang format creates tempory formatted file
-      clang-format-3.6 $f > ${f_base}_formatted_$TRAVIS_COMMIT.txt
-      # compare the committed file and formatted file and 
-      # writes the differences to a temp file
-      diff $f ${f_base}_formatted_$TRAVIS_COMMIT.txt | tee ${f_base}_clang_format.txt
-      #echo "bla" > ${f_base}_clang_format.txt
-      echo "\nclang-format for $f:"
-      cat ${f_base}_clang_format.txt
-      
-      # remove temporary files
-      rm ${f_base}_formatted_$TRAVIS_COMMIT.txt
-      rm ${f_base}_vera.txt
-      rm ${f_base}_cppcheck.txt
-      rm ${f_base}_clang_format.txt
-      ;;
-    *)
-      echo "$f : not a C/CPP file. Do not do static analysis / formatting checking."
-      continue
-  esac
-done
-
-exit 0
-
 if [ "$xMPI" = "1" ] ; then
 
    #openmpi
@@ -147,3 +71,77 @@ make installcheck
 # static code analysis
 cd .. # go back to source dir
 
+# initialize vera++
+mkdir -p vera_home
+
+# on ubuntu vera++ is installed to /usr/
+# copy all scripts/rules/ ... into ./vera_home
+cp -r /usr/lib/vera++/* ./vera_home
+# create the nest-profile for vera++
+cat > ./vera_home/profiles/nest <<EOF
+#!/usr/bin/tclsh
+# This profile includes all the rules for checking NEST
+
+set rules {
+  F001
+  F002
+  L001
+  L002
+  L003
+  L005
+  L006
+  T001
+  T002
+  T004
+  T005
+  T006
+  T007
+  T010
+  T011
+  T012
+  T013
+  T017
+  T018
+  T019
+}
+EOF
+
+# Extracting changed files between two commits
+file_names=`git diff --name-only $TRAVIS_COMMIT_RANGE`
+
+for f in $file_names; do
+   # filter files
+  case $f in
+    *.h | *.c | *.cc | *.hpp | *.cpp )
+      echo "Static analysis on file $f:"
+      f_base=`basename $f`
+      # Vera++ checks the specified list of rules given in the profile 
+      # nest which is placed in the <vera++ home>/lib/vera++/profile
+      vera++ --root ./vera_home --profile nest $f > ${f_base}_vera.txt
+      echo "\n - vera++ for $f:"
+      cat ${f_base}_vera.txt
+
+      cppcheck --enable=all --inconclusive --std=c++03 $f > ${f_base}_cppcheck.txt
+      echo "\n - cppcheck for $f:"
+      cat ${f_base}_cppcheck.txt
+
+      # clang format creates tempory formatted file
+      clang-format-3.6 $f > ${f_base}_formatted_$TRAVIS_COMMIT.txt
+      # compare the committed file and formatted file and 
+      # writes the differences to a temp file
+      echo "\n - clang-format for $f:"
+      diff $f ${f_base}_formatted_$TRAVIS_COMMIT.txt | tee ${f_base}_clang_format.txt
+
+      # remove temporary files
+      rm ${f_base}_formatted_$TRAVIS_COMMIT.txt
+
+      # TODO: instead of rm these files, they should be used for code review
+      rm ${f_base}_vera.txt
+      rm ${f_base}_cppcheck.txt
+      rm ${f_base}_clang_format.txt
+      ;;
+    *)
+      echo "$f : not a C/CPP file. Do not do static analysis / formatting checking."
+      continue
+  esac
+done
