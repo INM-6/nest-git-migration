@@ -42,9 +42,9 @@ before_install:
   #- ls /etc/apt/sources.list.d/
  # - sudo rm /etc/apt/sources.list.d/docker-source.list
   # get rpository for clang-3.6 stuff (including clang-format-3.6)
-  - sudo sh -c 'echo -n "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list'
+  #- sudo sh -c 'echo -n "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list'
   # add key from ^ repository
-  - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
+  #- wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
 
   # update repository status (-qq is more quiet)
   - sudo apt-get update -qq
