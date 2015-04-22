@@ -4,7 +4,7 @@ compiler:
   #- clang
 
 #For Ubuntu Trusty (14.04 LTS)
-#dist: trusty
+dist: trusty
 
 sudo: false
 #env:
@@ -54,16 +54,51 @@ addons:
     - texlive-latex-extra
     - clang
     - indent
-    - python-debian python-numpy python-scipy python-virtualenv python-matplotlib python-tk
-    - python-coverage python-nose python-setuptools
-    - python-mpi4py openmpi-bin openmpi-doc libopenmpi-dev
-    - python3 python3-all-dev python3-dev python3-numpy python3-scipy python3-nose cython
-    - texlive texlive-latex-base texlive-latex3 ghostscript
-    - autoconf automake libtool libltdl-dev
-    - libgsl0-dev  libghc-readline-dev gsl-bin libgsl0-dbg libgsl0ldbl
-    - python-django python-django-tagging python-httplib2 python-simplejson python-svn git-svn
-    - python-cheetah python-jinja2 python-mock
-    - python-tk python-gmpy python-imaging python-imaging-tk
+    - python-debian
+    - python-numpy
+    - python-scipy
+    - python-virtualenv
+    - python-matplotlib
+    - python-tk
+    - python-coverage
+    - python-nose
+    - python-setuptools
+    - python-mpi4py
+    - openmpi-bin
+    - openmpi-doc
+    - libopenmpi-dev
+    - python3-all-dev
+    - python3-dev
+    - python3-numpy
+    - python3-scipy
+    - python3-nose
+    - cython
+    - texlive
+    - texlive-latex-base
+    - texlive-latex3
+    - ghostscript
+    - autoconf
+    - automake
+    - libtool
+    - libltdl-dev
+    - libgsl0-dev
+    - libghc-readline-dev
+    - gsl-bin
+    - libgsl0-dbg
+    - libgsl0ldbl
+    - python-django
+    - python-django-tagging
+    - python-httplib2
+    - python-simplejson
+    - python-svn
+    - git-svn
+    - python-cheetah
+    - python-jinja2
+    - python-mock
+    - python-tk
+    - python-gmpy
+    - python-imaging
+    - python-imaging-tk
     - cvs e2fsprogs gettext libpackagekit-glib2-dev groff libssh2-1-dev python-libssh2 slang-gsl libncurses5-dev check
     - clang-format-3.6
     - cppcheck
