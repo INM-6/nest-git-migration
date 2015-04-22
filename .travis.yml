@@ -22,6 +22,7 @@ env:
     - xGSL=0 xMPI=0 xPYTHON=1
     - xGSL=0 xMPI=0 xPYTHON=0
 matrix:
+ # do notify immediately about it when a job of a build fails.
   fast_finish: true
 branches:
  only:
