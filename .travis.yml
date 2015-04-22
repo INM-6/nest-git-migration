@@ -43,11 +43,17 @@ addons:
   apt:
     packages:
     - python3
-    - ipython3 coreutils gawk mawk original-awk
-    - devscripts build-essential
+    - ipython3
+    - coreutils
+    - gawk
+    - mawk
+    - original-awk
+    - devscripts
+    - build-essential
     - autoremove
     - texlive-latex-extra
-    - clang indent
+    - clang
+    - indent
     - python-debian python-numpy python-scipy python-virtualenv python-matplotlib python-tk
     - python-coverage python-nose python-setuptools
     - python-mpi4py openmpi-bin openmpi-doc libopenmpi-dev
