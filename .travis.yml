@@ -43,7 +43,7 @@ before_install:
   #- if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install -y llvm-3.4 llvm-3.4-dev; fi
   - sudo rm -rf /var/lib/apt/lists/*
   - ls /etc/apt/sources.list.d/
-  - sudo rm /etc/apt/sources.list.d/docker-source.list
+ # - sudo rm /etc/apt/sources.list.d/docker-source.list
   # get rpository for clang-3.6 stuff (including clang-format-3.6)
   - sudo sh -c 'echo -n "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list'
   # add key from ^ repository
