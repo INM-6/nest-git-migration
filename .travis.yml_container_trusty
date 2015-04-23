@@ -1,3 +1,5 @@
+# Container based
+sudo: false
 language: cpp
 compiler:
   - gcc
@@ -6,7 +8,6 @@ compiler:
 #For Ubuntu Trusty (14.04 LTS)
 dist: trusty
 
-sudo: false
 #env:
 #  - ANALYZE=false
 #  - ANALYZE=true
@@ -35,13 +36,15 @@ cache:
  #  debug: true
 addons:
   apt:
-    sources:
+   sources:
     - deadsnakes
     - ubuntu-toolchain-r-test 
  
-addons:
-  apt:
-    packages:
+     # few packages not yet on the whitelist - https://github.com/travis-ci/travis-ci/issues/3734
+     # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+     # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-trusty
+  
+   packages:
     - python3
     - ipython3
     - coreutils
@@ -104,6 +107,7 @@ addons:
     - cppcheck
     - vera++
     
+  
 before_install:
   - echo $LANG
   - echo $LC_ALL
