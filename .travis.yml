@@ -63,9 +63,9 @@ before_install:
   #Clang
   - sudo apt-get install -y clang indent
   # Required by Topographica
-  - sudo apt-get install xorg-x11-server-Xvfb pylint pyflakes
+  #- sudo apt-get install xorg-x11-server-Xvfb pylint pyflakes
   # Required by NEST, PyNN and Topographica
-  #- sudo apt-get install -y python-debian python-numpy python-scipy python-virtualenv python-matplotlib python-tk
+  - sudo apt-get install -y python-debian python-numpy python-scipy python-virtualenv python-matplotlib python-tk
   # Required by Sumatra and PyNN
 
   - sudo apt-get install -y python-coverage python-nose python-setuptools
