@@ -12,6 +12,8 @@ dist: trusty
 #  - ANALYZE=false
 #  - ANALYZE=true
 env:
+ #global:
+  #  - secure: "61f325f97da99b72657638c899d89d980e205327"
  matrix:
     - xGSL=1 xMPI=0 xPYTHON=1
     - xGSL=0 xMPI=1 xPYTHON=1
