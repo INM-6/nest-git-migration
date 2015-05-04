@@ -118,13 +118,21 @@ notifications:
   on_success: change
   on_failure: always
   #on_start: false
+after_failure:
+  - cd $TRAVIS_BUILD_DIR/build
+  - |
+    for i in $(find reports -type f); do
+      echo "###########################"
+      echo "File: $i"
+      cat $i
+    done
 #Heroku deployment  
-deploy:
-  provider: heroku
-  api_key:GlEUR8kSEoEY+OL5oCy1tt16nMvT+5p1quFVmaUS1ARkj7rzP8VZsPkSIDkZQfIctBy2N4O9+d1VR6f3voPPEWLBKNrvpS9RLvdQPB6tTtPHZM7QuLfXMwu5pwiCv5MJuNiuhz3++HXMEgqpJ6MwXBBEbozbWXRb+0IyztRBg1k=
-  app: nest-git-migration
-  on:
-    repo: INM-6/nest-git-migration
+#deploy:
+#  provider: heroku
+#  api_key:GlEUR8kSEoEY+OL5oCy1tt16nMvT+5p1quFVmaUS1ARkj7rzP8VZsPkSIDkZQfIctBy2N4O9+d1VR6f3voPPEWLBKNrvpS9RLvdQPB6tTtPHZM7QuLfXMwu5pwiCv5MJuNiuhz3++HXMEgqpJ6MwXBBEbozbWXRb+0IyztRBg1k=
+#  app: nest-git-migration
+#  on:
+#    repo: INM-6/nest-git-migration
 #deploy:
  # provider: heroku
  # api_key:M/ifFmZAEp0j02pAfvPwJNiU4YsqYIAF3L9KGEPkFe4onAxdMZTBPWxr8SspZI5zCPUanK4Pu1mH9XzqKUdQ3VnT5RgMCUuwx1DDvfag5liZH043LznHH6seeCS+XLkg5tCpdsqB19u+Dcx+tvBZxUbwBi5fofgf7/nsf6gK7h0=
