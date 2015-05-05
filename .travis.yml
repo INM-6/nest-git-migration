@@ -140,3 +140,4 @@ deploy:
   app: nest-git-migration
   on:
    repo: INM-6/nest-git-migration
+  skip_cleanup: true 
