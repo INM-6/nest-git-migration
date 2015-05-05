@@ -111,6 +111,7 @@ before_install:
 install: 
   - cppcheck --version
   - cython --version
+  - python --version
 before_script:
   - chmod +x build.sh 
 
