@@ -133,10 +133,10 @@ after_failure:
 #  app: nest-git-migration
 #  on:
 #    repo: INM-6/nest-git-migration
-#deploy:
- # provider: heroku
- # api_key:M/ifFmZAEp0j02pAfvPwJNiU4YsqYIAF3L9KGEPkFe4onAxdMZTBPWxr8SspZI5zCPUanK4Pu1mH9XzqKUdQ3VnT5RgMCUuwx1DDvfag5liZH043LznHH6seeCS+XLkg5tCpdsqB19u+Dcx+tvBZxUbwBi5fofgf7/nsf6gK7h0=
+deploy:
+  provider: heroku
+  api_key:663d6f32-418b-4f9d-ba64-1addc211b1d6
  #   secure: 
- # app: nest-git-migration
-  #on:
- #   repo: INM-6/nest-git-migration
+  app: nest-git-migration
+  on:
+   repo: INM-6/nest-git-migration
