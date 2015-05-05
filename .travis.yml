@@ -40,7 +40,16 @@ cache:
 #addons:
 #  artifacts:
  #  debug: true
-
+ 
+deploy:
+  provider: heroku
+  api_key:663d6f32-418b-4f9d-ba64-1addc211b1d6
+ #   secure: 
+  app: nest-git-migration
+  on:
+   repo: INM-6/nest-git-migration
+  skip_cleanup: true 
+ 
 before_install:
   - echo $LANG
   - echo $LC_ALL
@@ -133,11 +142,3 @@ after_failure:
 #  app: nest-git-migration
 #  on:
 #    repo: INM-6/nest-git-migration
-deploy:
-  provider: heroku
-  api_key:663d6f32-418b-4f9d-ba64-1addc211b1d6
- #   secure: 
-  app: nest-git-migration
-  on:
-   repo: INM-6/nest-git-migration
-  skip_cleanup: true 
