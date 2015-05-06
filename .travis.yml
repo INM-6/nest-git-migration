@@ -15,8 +15,9 @@ env:
   #global:
     # sets the HEROKU_API_KEY for deploys
   #  - secure:GlEUR8kSEoEY+OL5oCy1tt16nMvT+5p1quFVmaUS1ARkj7rzP8VZsPkSIDkZQfIctBy2N4O9+d1VR6f3voPPEWLBKNrvpS9RLvdQPB6tTtPHZM7QuLfXMwu5pwiCv5MJuNiuhz3++HXMEgqpJ6MwXBBEbozbWXRb+0IyztRBg1k=
- #global:
+ global:
   #  - secure: "61f325f97da99b72657638c899d89d980e205327"
+     - secure:663d6f32-418b-4f9d-ba64-1addc211b1d6
  matrix:
     - xGSL=1 xMPI=0 xPYTHON=1
     - xGSL=0 xMPI=1 xPYTHON=1
