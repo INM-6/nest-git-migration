@@ -41,7 +41,7 @@ cache:
 #addons:
 #  artifacts:
  #  debug: true
-
+#Heroku deployment
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
@@ -138,4 +138,4 @@ after_failure:
       echo "File: $i"
       cat $i
     done
-#Heroku deployment  
+  
