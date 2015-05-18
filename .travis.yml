@@ -42,9 +42,10 @@ cache:
 #  artifacts:
  #  debug: true
 #Heroku deployment
-deploy:
-  provider: heroku
-  api_key: $HEROKU_API_KEY
+#deploy:
+#  provider: heroku
+#  api_key: $HEROKU_API_KEY
+  
  #   secure: 
 # app: nest-git-migration
 #  on:
