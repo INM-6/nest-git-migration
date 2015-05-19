@@ -68,7 +68,7 @@ echo $PATH
 echo $PYTHONPATH
 export PYTHONPATH=$NEST_RESULT/lib/python2.7/site-packages:$PYTHONPATH
 export PYTHONPATH=/usr/local/bin:$NEST_RESULT/lib64/python2.7/site-packages:$PYTHONPATH
-export PATH=$NEST_RESULT/bin:$PATH
+export PATH=/usr/local/bin:$NEST_RESULT/bin:$PATH
 whereis cython
 
 make
