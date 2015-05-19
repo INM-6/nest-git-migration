@@ -64,6 +64,8 @@ cd "$NEST_VPATH"
     $CONFIGURE_GSL \
 
 
+echo $PATH
+echo $PYTHONPATH
 make
 make install
 make installcheck
