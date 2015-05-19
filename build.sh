@@ -66,7 +66,7 @@ cd "$NEST_VPATH"
 
 echo $PATH
 echo $PYTHONPATH
-export PYTHONPATH=/home/travis/build/INM-6/nest-git-migration/result/lib/python2.7/site-packages:$PYTHONPATH
+cat /home/travis/build/INM-6/nest-git-migration/result/bin/nest_vars.sh
 make
 make install
 make installcheck
