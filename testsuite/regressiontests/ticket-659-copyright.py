@@ -110,7 +110,7 @@ for dirpath, _, fnames in os.walk(source_dir):
 print("Files with errors '{0}' out of '{1}'!".format(total_errors, total_files))
 
 if total_errors > 0:
-    #sys.exit(EXIT_BAD_HEADER)
-    sys.exit("Incorrect copyright header in '{0}':".format(tested_file))
+    sys.exit(EXIT_BAD_HEADER)
+    #sys.exit("Incorrect copyright header in '{0}':".format(tested_file))
 else:
     sys.exit(EXIT_SUCCESS)
