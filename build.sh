@@ -66,7 +66,10 @@ cd "$NEST_VPATH"
 
 echo $PATH
 echo $PYTHONPATH
-cat /home/travis/build/INM-6/nest-git-migration/result/bin/nest_vars.sh
+export PYTHONPATH=$NEST_RESULT/lib/python2.7/site-packages:$PYTHONPATH
+export PYTHONPATH=$NEST_RESULT/lib64/python2.7/site-packages:$PYTHONPATH
+export PATH=$NEST_RESULT/bin:$PATH
+whereis cython
 make
 make install
 make installcheck
