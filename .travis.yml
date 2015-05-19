@@ -55,9 +55,7 @@ cache:
 before_install:
   - echo $LANG
   - echo $LC_ALL
-  - echo $PATH
-  - echo $PYTHONPATH
-
+  
   #- if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install -y llvm-3.4 llvm-3.4-dev; fi
   - sudo rm -rf /var/lib/apt/lists/*
   - ls /etc/apt/sources.list.d/
@@ -146,6 +144,19 @@ notifications:
     on_success: change
     on_failure: always
     #on_start: false
+
+#S3 deployment    
+deploy:
+  provider: s3
+  access_key_id: b8zTuq5p
+  secret_access_key:
+    secure: dXgKuZ/hnBLDmzXrsQWBPydDbwSyEt6/dOfNoy4wuxvgvuv3W6TSYpjJZNG2LwcfSEYvrLxA0BkXeh/8aB9k6AmFvXle1h8srBYP41hBMwK8On73+i8atgc53CQwLChTQX3gZTlQVv4isk3y4lmdrh74LsJUuKZ6RUWJ25TVHmY=
+  bucket: S3 Bucket
+  local-dir: "$TRAVIS_BUILD_DIR/build"
+  acl: bucket_owner_full_control
+  on:
+    repo: INM-6/nest-git-migration
+    
 
 after_failure:
   - cd $TRAVIS_BUILD_DIR/build
