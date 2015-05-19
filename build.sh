@@ -64,12 +64,11 @@ cd "$NEST_VPATH"
     $CONFIGURE_GSL \
 
 
-echo $PATH
-echo $PYTHONPATH
 export PYTHONPATH=$NEST_RESULT/lib/python2.7/site-packages:$PYTHONPATH
 export PYTHONPATH=/usr/local/bin:$NEST_RESULT/lib64/python2.7/site-packages:$PYTHONPATH
 export PATH=~/.local/bin:/usr/local/bin:$NEST_RESULT/bin:$PATH
-whereis cython
+echo $PATH
+echo $PYTHONPATH
 
 make
 make install
