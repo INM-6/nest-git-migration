@@ -121,6 +121,9 @@ before_install:
   - sudo apt-get install cppcheck
   #vera++
   - sudo apt-get install vera++
+  
+  - echo $PATH
+  - echo $PYTHONPATH
 
 install: 
   - cppcheck --version
