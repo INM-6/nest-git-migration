@@ -147,12 +147,14 @@ notifications:
     #on_start: false
 
 #S3 deployment    
+
 deploy:
   provider: s3
-  access_key_id: b8zTuq5p
+  access_key_id: AKIAIGKKBSJAWDMB34IA
   secret_access_key:
-    secure: dXgKuZ/hnBLDmzXrsQWBPydDbwSyEt6/dOfNoy4wuxvgvuv3W6TSYpjJZNG2LwcfSEYvrLxA0BkXeh/8aB9k6AmFvXle1h8srBYP41hBMwK8On73+i8atgc53CQwLChTQX3gZTlQVv4isk3y4lmdrh74LsJUuKZ6RUWJ25TVHmY=
-  bucket: S3 Bucket
+    secure: CARBlB16Up/ZyrMJty32nolnBfSKvlBYJ9HD7KXEOqCL4L95QJdpH0XtfxwTfOYJ5XuTjVMOvnUmB6F/PKzVO01VTP5Fa9iRBo2UNHYP6zxKNW++z5658iPoFPVTag47M9grWDCfp7A/+1pFna7mHHJ0Iq/+pUPYblYTNMFfqJg=
+  bucket: S3
+  skip_cleanup: true
   local-dir: "$TRAVIS_BUILD_DIR/build"
   acl: bucket_owner_full_control
   on:
