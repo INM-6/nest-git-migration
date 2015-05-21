@@ -153,7 +153,7 @@ deploy:
   access_key_id: AKIAIGKKBSJAWDMB34IA
   secret_access_key:
     secure: CARBlB16Up/ZyrMJty32nolnBfSKvlBYJ9HD7KXEOqCL4L95QJdpH0XtfxwTfOYJ5XuTjVMOvnUmB6F/PKzVO01VTP5Fa9iRBo2UNHYP6zxKNW++z5658iPoFPVTag47M9grWDCfp7A/+1pFna7mHHJ0Iq/+pUPYblYTNMFfqJg=
-  bucket: S3
+  bucket: "S3 Bucket"
   skip_cleanup: true
   local-dir: "$TRAVIS_BUILD_DIR/build"
   acl: bucket_owner_full_control
