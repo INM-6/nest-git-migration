@@ -70,8 +70,8 @@ before_install:
   
   #Upgrade pip
   #- pip install --upgrade pip
-  #- wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-  #- sudo python get-pip.py
+  - wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+  - sudo python get-pip.py
 
   - sudo apt-get install -y  coreutils gawk mawk original-awk
   # some basic package build tools:
