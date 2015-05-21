@@ -70,8 +70,8 @@ before_install:
   
   #Upgrade pip
   #- pip install --upgrade pip
-  - wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-  - sudo python get-pip.py
+  #- wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+  #- sudo python get-pip.py
 
   - sudo apt-get install -y  coreutils gawk mawk original-awk
   # some basic package build tools:
@@ -161,12 +161,12 @@ deploy:
     repo: INM-6/nest-git-migration
     
 
-after_failure:
-  - cd $TRAVIS_BUILD_DIR/build
-  - |
-    for i in $(find reports -type f); do
-      echo "###########################"
-      echo "File: $i"
-      cat $i
-    done
+#after_failure:
+#  - cd $TRAVIS_BUILD_DIR/build
+#  - |
+#    for i in $(find reports -type f); do
+#      echo "###########################"
+#      echo "File: $i"
+#      cat $i
+#    done
   
