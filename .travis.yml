@@ -154,7 +154,9 @@ deploy:
   #secret_access_key:
   #  secure: CARBlB16Up/ZyrMJty32nolnBfSKvlBYJ9HD7KXEOqCL4L95QJdpH0XtfxwTfOYJ5XuTjVMOvnUmB6F/PKzVO01VTP5Fa9iRBo2UNHYP6zxKNW++z5658iPoFPVTag47M9grWDCfp7A/+1pFna7mHHJ0Iq/+pUPYblYTNMFfqJg=
   access_key_id: AKIAIC2R6KWR5DF2W6WQ
-  secret_access_key: $S3_Secret_Access_Key
+  #secret_access_key: $S3_Secret_Access_Key
+  secret_access_key:
+    secure: IsVRcZf3U8CzwqkW9u9bF9eubXV+EKYEYW4VAI2C/Ex+UOdlIW0x+ogPFS5yJ5Sj4IuDre9dYi3oo+AfECBV5HSmqVz8nzz4cmVPve+2ty0qcl6e7/kKvALjE9ZLWiYR4TZbmAmRx8hkPrNeWJU412NwnkvqZwRDIcg5aAWna+0=
   bucket: "nest-travis-artefacts"
   skip_cleanup: true
   local-dir: "$TRAVIS_BUILD_DIR/build"
