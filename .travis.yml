@@ -150,16 +150,18 @@ notifications:
 
 deploy:
   provider: s3
-  access_key_id: AKIAIGKKBSJAWDMB34IA
-  secret_access_key:
-    secure: CARBlB16Up/ZyrMJty32nolnBfSKvlBYJ9HD7KXEOqCL4L95QJdpH0XtfxwTfOYJ5XuTjVMOvnUmB6F/PKzVO01VTP5Fa9iRBo2UNHYP6zxKNW++z5658iPoFPVTag47M9grWDCfp7A/+1pFna7mHHJ0Iq/+pUPYblYTNMFfqJg=
+  #access_key_id: AKIAIGKKBSJAWDMB34IA
+  #secret_access_key:
+  #  secure: CARBlB16Up/ZyrMJty32nolnBfSKvlBYJ9HD7KXEOqCL4L95QJdpH0XtfxwTfOYJ5XuTjVMOvnUmB6F/PKzVO01VTP5Fa9iRBo2UNHYP6zxKNW++z5658iPoFPVTag47M9grWDCfp7A/+1pFna7mHHJ0Iq/+pUPYblYTNMFfqJg=
+  access_key_id: AKIAIC2R6KWR5DF2W6WQ
+  secret_access_key: $S3_Secret_Access_Key
   bucket: "nest-travis-artefacts"
   skip_cleanup: true
   local-dir: "$TRAVIS_BUILD_DIR/build"
   acl: bucket_owner_full_control
-  on:
-    repo: INM-6/nest-git-migration
-    
+  #on:
+  #  repo: INM-6/nest-git-migration
+
 
 #after_failure:
 #  - cd $TRAVIS_BUILD_DIR/build
